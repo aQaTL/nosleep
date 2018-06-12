@@ -4,6 +4,8 @@
 #include <glad/glad.h>
 #include <cstdlib>
 
+#include <windows.h>
+
 #include <GLFW/glfw3.h>
 
 static void errorCallback(int e, const char* d) {
@@ -19,6 +21,7 @@ void window_focus_callback(GLFWwindow* window, int focused) {
 }
 
 static GLFWwindow* InitWindow(std::string title, std::pair<int, int> size) {
+	FreeConsole();
 	if (!glfwInit()) {
 		std::cerr << "Error initializing glfw" << std::endl;
 		exit(-1);
@@ -44,7 +47,5 @@ static GLFWwindow* InitWindow(std::string title, std::pair<int, int> size) {
 		fflush(stderr);
 	}
 
-
 	return window;
 }
-
