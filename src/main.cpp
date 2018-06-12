@@ -1,4 +1,4 @@
-#include "iostream"
+#include <iostream>
 #include <memory>
 
 #include <glfw/glfw3.h>
@@ -32,7 +32,6 @@ int main() {
 	nk_glfw3_font_stash_begin(&atlas);
 	nk_glfw3_font_stash_end();
 
-
 	nk_colorf bg = {
 		r: 0.10f,
 		g: 0.18f,
@@ -53,12 +52,10 @@ int main() {
 	};
 
 	while (!glfwWindowShouldClose(window)) {
-		/* Input */
 		glfwPollEvents();
 		nk_glfw3_new_frame();
 
-		/* GUI */
-		if (nk_begin(ctx, "Demo", nk_rect(0, 0, windowSize.first, windowSize.second), 0)) {
+		if (nk_begin(ctx, "nosleep", nk_rect(0, 0, windowSize.first, windowSize.second), 0)) {
 			nk_layout_row_dynamic(ctx, 20, 1);
 			nk_label(ctx, label(), NK_TEXT_ALIGN_CENTERED);
 
