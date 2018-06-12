@@ -40,6 +40,7 @@ int main() {
 	};
 
 	auto noSleep = std::make_unique<SleepPrevention>();
+	noSleep->setSleepPreventionState(true);
 
 	auto label = [&noSleep]() {
 		return noSleep->getSleepPreventionState() ?
