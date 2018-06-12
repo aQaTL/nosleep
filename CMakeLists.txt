@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.9)
 project(nosleep)
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -Wnarrowing -fpermissive")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
 set(source_dir "${PROJECT_SOURCE_DIR}/src/")
 set(lib_dir "${PROJECT_SOURCE_DIR}/lib/")
 
