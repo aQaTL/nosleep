@@ -11,6 +11,7 @@ file(GLOB_RECURSE source_files "${source_dir}/*.cpp")
 
 add_executable(${PROJECT_NAME} ${source_files} src/WindowUtils.hpp src/SleepPrevention.cpp src/SleepPrevention.hpp lib/nuklear/nuklear_gdi.h)
 target_include_directories(${PROJECT_NAME} PRIVATE "${source_dir}")
+set_target_properties(nosleep PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR})
 
 # nuklear
 set(nuklear_dir "${lib_dir}/nuklear")
