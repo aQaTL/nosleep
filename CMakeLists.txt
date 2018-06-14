@@ -12,8 +12,9 @@ file(GLOB_RECURSE source_files "${source_dir}/*.cpp")
 add_executable(${PROJECT_NAME} ${source_files})
 target_include_directories(${PROJECT_NAME} PRIVATE "${source_dir}")
 
-
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+	#Always use Release build type with msvc
+	set(CMAKE_BUILD_TYPE Release)
 else ()
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
 	set_target_properties(nosleep PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR})
