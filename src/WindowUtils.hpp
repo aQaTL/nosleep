@@ -39,7 +39,7 @@ static GLFWwindow* InitWindow(std::string title, std::pair<int, int> size) {
 	GLFWwindow* window = glfwCreateWindow(size.first, size.second, title.c_str(), NULL, NULL);
 
 	glfwMakeContextCurrent(window);
-	glfwSwapInterval(2);
+	glfwSwapInterval(4);
 	glfwSetWindowFocusCallback(window, window_focus_callback);
 
 	if (!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress)) {
