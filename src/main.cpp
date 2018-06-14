@@ -32,12 +32,7 @@ int main() {
 	nk_glfw3_font_stash_begin(&atlas);
 	nk_glfw3_font_stash_end();
 
-	nk_colorf bg = {
-		r: 0.10f,
-		g: 0.18f,
-		b: 0.24f,
-		a: 1.0f,
-	};
+	nk_colorf bg = { 0.10f, 0.18f, 0.24f, 1.0f };
 
 	auto noSleep = std::make_unique<SleepPrevention>();
 	noSleep->setSleepPreventionState(true);
@@ -56,7 +51,7 @@ int main() {
 		glfwPollEvents();
 		nk_glfw3_new_frame();
 
-		if (nk_begin(ctx, "nosleep", nk_rect(0, 0, windowSize.first, windowSize.second), 0)) {
+		if (nk_begin(ctx, "nosleep", nk_rect(0.0f, 0.0f, windowSize.first, windowSize.second), 0)) {
 			nk_layout_row_dynamic(ctx, 20, 1);
 			nk_label(ctx, label(), NK_TEXT_ALIGN_CENTERED);
 

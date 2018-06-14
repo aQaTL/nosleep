@@ -3,19 +3,26 @@ cmake_minimum_required(VERSION 3.9)
 project(nosleep)
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
+
 set(source_dir "${PROJECT_SOURCE_DIR}/src/")
 set(lib_dir "${PROJECT_SOURCE_DIR}/lib/")
 
 file(GLOB_RECURSE source_files "${source_dir}/*.cpp")
 
-add_executable(${PROJECT_NAME} ${source_files} src/WindowUtils.hpp src/SleepPrevention.cpp src/SleepPrevention.hpp lib/nuklear/nuklear_gdi.h)
+add_executable(${PROJECT_NAME} ${source_files})
 target_include_directories(${PROJECT_NAME} PRIVATE "${source_dir}")
 
-set(CMAKE_EXE_LINKER_FLAGS " -static")
-target_link_libraries(nosleep -static-libgcc -static-libstdc++)
 
-set_target_properties(nosleep PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR})
+if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+else ()
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
+	set_target_properties(nosleep PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR})
+
+	if (WIN32)
+		set(CMAKE_EXE_LINKER_FLAGS " -static")
+		target_link_libraries(nosleep -static-libgcc -static-libstdc++)
+	endif ()
+endif ()
 
 # nuklear
 set(nuklear_dir "${lib_dir}/nuklear")

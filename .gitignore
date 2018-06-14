@@ -33,3 +33,7 @@ cmake-build-debug
 *.exe
 *.out
 *.app
+
+# When project was generated for visual studio
+vsbuild
+CMakeFiles
