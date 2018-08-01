@@ -1,50 +1,30 @@
 #pragma once
 
-#include <cstdio>
 #include <glad/glad.h>
-#include <cstdlib>
 
 #include <windows.h>
 
 #include <GLFW/glfw3.h>
 
-static void errorCallback(int e, const char* d) {
-	printf("Error %d: %s\n", e, d);
-}
-
-void window_focus_callback(GLFWwindow* window, int focused) {
-	if (focused) {
-		glfwSwapInterval(4);
-	} else {
-		glfwSwapInterval(30);
-	}
-}
-
-static GLFWwindow* InitWindow(std::string title, std::pair<int, int> size) {
-	FreeConsole();
-	if (!glfwInit()) {
-		std::cerr << "Error initializing glfw" << std::endl;
-		exit(-1);
+static GLFWwindow* InitWindow(const char* title, std::pair<int, int> size)
+{
+	if (!glfwInit())
+	{
+		MessageBox(NULL, "Failed to initialize GLFW", "Error", MB_OK | MB_ICONERROR);
+		exit(1);
 	}
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
 
-	/* GLFW */
-	glfwSetErrorCallback(errorCallback);
-	if (!glfwInit()) {
-		fprintf(stdout, "[GFLW] failed to init!\n");
-		exit(1);
-	}
-
-	GLFWwindow* window = glfwCreateWindow(size.first, size.second, title.c_str(), NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(size.first, size.second, title, NULL, NULL);
 
 	glfwMakeContextCurrent(window);
-	glfwSwapInterval(4);
-	glfwSetWindowFocusCallback(window, window_focus_callback);
+	glfwSwapInterval(1);
 
-	if (!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress)) {
-		fprintf(stderr, "Failed to load GLAD\n");
-		fflush(stderr);
+	if (!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress))
+	{
+		MessageBox(NULL, "Failed to load GLAD", "Error", MB_OK | MB_ICONERROR);
+		exit(1);
 	}
 
 	return window;

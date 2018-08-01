@@ -14,7 +14,7 @@ public:
 	SleepPrevention();
 	virtual ~SleepPrevention();
 
-	bool getSleepPreventionState();
+	bool getSleepPreventionState() const;
 	void setSleepPreventionState(bool preventSleep);
 	void cycleSleepPreventionState();
 };

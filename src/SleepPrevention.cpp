@@ -9,7 +9,7 @@ SleepPrevention::~SleepPrevention() {
 	this->setSleepPreventionState(false);
 }
 
-bool SleepPrevention::getSleepPreventionState() {
+bool SleepPrevention::getSleepPreventionState() const {
 	return state == on;
 }
 
